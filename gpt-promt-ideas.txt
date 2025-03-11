@@ -1,0 +1,90 @@
+Docker in MLOps
+Docker is a containerization platform that allows developers to package applications along with their dependencies into portable containers. In MLOps, Docker is crucial for ensuring consistency across different environments—local, development, staging, and production. It helps in:
+
+Reproducibility: Packaging ML models with exact dependencies.
+Scalability: Deploying models on cloud or Kubernetes clusters.
+Portability: Running models in different environments without compatibility issues.
+Common Docker Commands in MLOps
+Here’s a list of essential Docker commands used in MLOps projects:
+
+1. Setting Up Docker
+docker --version → Check the installed Docker version.
+docker login → Log in to Docker Hub or a private registry.
+2. Working with Docker Images
+docker build -t my-ml-app .
+
+Builds a Docker image from the Dockerfile in the current directory.
+-t my-ml-app assigns a tag to the image.
+docker images
+
+Lists all locally available Docker images.
+docker rmi my-ml-app
+
+Removes an image.
+docker tag my-ml-app mydockerhub/ml-app:v1.0
+
+Tags an image before pushing it to a registry.
+docker push mydockerhub/ml-app:v1.0
+
+Pushes the image to Docker Hub.
+docker pull mydockerhub/ml-app:v1.0
+
+Pulls an image from a registry.
+3. Running Docker Containers
+docker run -it my-ml-app
+
+Runs a container interactively.
+docker run -d --name ml-container -p 5000:5000 my-ml-app
+
+Runs a container in detached mode, exposing port 5000.
+docker ps
+
+Lists running containers.
+docker ps -a
+
+Lists all containers, including stopped ones.
+docker stop ml-container
+
+Stops a running container.
+docker rm ml-container
+
+Removes a container.
+docker logs ml-container
+
+Shows logs of a running container.
+docker exec -it ml-container bash
+
+Opens a shell inside a running container.
+4. Docker Volumes (For Persistent Data)
+docker volume create ml-data
+
+Creates a Docker volume.
+docker run -v ml-data:/app/data my-ml-app
+
+Mounts a volume inside the container.
+docker volume ls
+
+Lists all volumes.
+5. Docker Compose (For Multi-Container Setups)
+docker-compose up
+
+Starts services defined in docker-compose.yml.
+docker-compose down
+
+Stops and removes services.
+6. Docker Networks (For Inter-Container Communication)
+docker network create ml-network
+
+Creates a custom network.
+docker network ls
+
+Lists networks.
+docker run --network ml-network my-ml-app
+
+Runs a container inside the specified network.
+Docker in MLOps Workflow
+Containerizing ML Models: Using Dockerfile to package dependencies.
+Training Pipelines: Running training scripts inside containers.
+Model Deployment: Deploying trained models with docker run or Kubernetes.
+Versioning & CI/CD: Pushing Docker images to a registry (docker push).
+Scaling: Running multiple containers with docker-compose or Kubernetes.
